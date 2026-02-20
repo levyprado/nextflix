@@ -1,3 +1,4 @@
+import { Button } from '@/components/ui/button'
 import Icon from '@/components/ui/icon'
 import {
   InformationCircleIcon,
@@ -33,17 +34,21 @@ export default function HomePage() {
             advanced AI Judge he once championed, before it determines his fate.
           </p>
           <div className='mt-3 flex flex-wrap gap-2.5'>
-            <button className='flex items-center gap-2 rounded-full border border-foreground bg-foreground px-6 py-2.5 font-bold text-background'>
+            <Button>
               <Icon icon={PlayIcon} />
               Watch Now
-            </button>
-            <button className='flex items-center gap-2 rounded-full border border-foreground/20 bg-foreground/15 px-6 py-2.5 font-bold backdrop-blur-md'>
+            </Button>
+            <Button variant='secondary'>
               <Icon icon={InformationCircleIcon} />
               More Info
-            </button>
-            <button className='hidden size-11.5 items-center justify-center rounded-full border border-foreground/20 bg-foreground/15 backdrop-blur-md'>
+            </Button>
+            <Button
+              variant='secondary'
+              size='icon'
+              className='hidden size-11 sm:inline-flex'
+            >
               <Icon icon={PlusSignIcon} />
-            </button>
+            </Button>
           </div>
         </div>
       </section>
