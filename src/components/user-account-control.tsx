@@ -1,3 +1,5 @@
+import { Button } from './ui/button'
+
 export default function UserAccountControl() {
-  return <button className='size-10 rounded-full bg-foreground'></button>
+  return <Button size='icon'></Button>
 }
