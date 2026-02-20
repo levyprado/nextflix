@@ -1,6 +1,7 @@
 import { Search01Icon } from '@hugeicons/core-free-icons'
 import Link from 'next/link'
 import Logo from './logo'
+import { Button } from './ui/button'
 import Icon from './ui/icon'
 import UserAccountControl from './user-account-control'
 
@@ -45,9 +46,9 @@ export default function Header() {
       </nav>
 
       <div className='flex items-center gap-2.5'>
-        <button className='flex size-10 items-center justify-center rounded-full border border-foreground/20 bg-foreground/15'>
+        <Button variant='secondary' size='icon'>
           <Icon icon={Search01Icon} />
-        </button>
+        </Button>
         <UserAccountControl />
       </div>
     </header>
