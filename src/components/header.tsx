@@ -29,7 +29,7 @@ const navItems = [
 
 export default function Header() {
   return (
-    <header className='relative flex items-center justify-between px-4 py-3 md:px-8 xl:px-12 xl:py-4 2xl:px-16'>
+    <header className='fixed top-0 left-0 z-10 flex w-full items-center justify-between bg-linear-to-b from-background/60 to-transparent px-5 py-3 transition-colors duration-300 md:px-8 xl:px-12 xl:py-5 2xl:px-16'>
       <Logo />
 
       <nav className='absolute top-1/2 left-1/2 hidden -translate-1/2 gap-6 font-medium md:flex xl:gap-8'>
@@ -45,7 +45,7 @@ export default function Header() {
       </nav>
 
       <div className='flex items-center gap-2.5'>
-        <button className='flex size-10 items-center justify-center rounded-full bg-foreground/10'>
+        <button className='flex size-10 items-center justify-center rounded-full border border-foreground/20 bg-foreground/15'>
           <Icon icon={Search01Icon} />
         </button>
         <UserAccountControl />
