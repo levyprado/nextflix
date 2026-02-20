@@ -10,7 +10,7 @@ import Link from 'next/link'
 
 export default function HomePage() {
   return (
-    <main>
+    <>
       <section className='relative h-[90svh] w-full'>
         <div className='absolute inset-0 -z-10'>
           <Image
@@ -53,7 +53,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className='-mt-16 flex flex-col gap-16 px-5 pb-16 md:px-8 xl:px-12 2xl:px-16'>
+      <section className='-mt-12 flex flex-col gap-16 px-5 pb-16 md:px-8 xl:px-12 2xl:px-16'>
         {/* Sections */}
         {[...Array(6).keys()].map((i) => (
           <section key={i} className='flex flex-col gap-4'>
@@ -108,6 +108,6 @@ export default function HomePage() {
           </section>
         ))}
       </section>
-    </main>
+    </>
   )
 }
