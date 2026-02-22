@@ -1,4 +1,4 @@
-import Header from '@/components/header'
+import AppLayout from '@/components/app-layout'
 import type { Metadata } from 'next'
 import { Plus_Jakarta_Sans, Syne } from 'next/font/google'
 import './globals.css'
@@ -25,9 +25,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body className={`${syneSans.variable} ${plusJakartaSans.variable}`}>
-        <Header />
-        {children}
+      <body className={`${syneSans.variable} ${plusJakartaSans.variable} flex`}>
+        <AppLayout>{children}</AppLayout>
       </body>
     </html>
   )
