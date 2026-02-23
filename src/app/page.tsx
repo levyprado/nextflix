@@ -1,10 +1,7 @@
+import Container from '@/components/layout/container'
 import { Button } from '@/components/ui/button'
 import Icon from '@/components/ui/icon'
-import {
-  InformationCircleIcon,
-  PlayIcon,
-  PlusSignIcon,
-} from '@hugeicons/core-free-icons'
+import { InformationCircleIcon, PlayIcon } from '@hugeicons/core-free-icons'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -24,7 +21,7 @@ export default function HomePage() {
           <div className='absolute inset-0 bg-linear-to-t from-background via-transparent to-transparent' />
         </div>
 
-        <div className='absolute bottom-[20%] flex max-w-3xl flex-col gap-2 px-5 md:px-8 xl:px-12 2xl:px-16'>
+        <Container className='absolute bottom-[20%] flex max-w-3xl flex-col gap-2'>
           <h1 className='font-heading text-2xl font-extrabold wrap-break-word uppercase italic'>
             Mercy
           </h1>
@@ -42,18 +39,11 @@ export default function HomePage() {
               <Icon icon={InformationCircleIcon} />
               More Info
             </Button>
-            <Button
-              variant='secondary'
-              size='icon'
-              className='hidden size-11 sm:inline-flex'
-            >
-              <Icon icon={PlusSignIcon} />
-            </Button>
           </div>
-        </div>
+        </Container>
       </section>
 
-      <section className='-mt-12 flex flex-col gap-16 px-5 pb-16 md:px-8 xl:px-12 2xl:px-16'>
+      <Container as='section' className='-mt-12 flex flex-col gap-16 pb-16'>
         {/* Sections */}
         {[...Array(6).keys()].map((i) => (
           <section key={i} className='flex flex-col gap-4'>
@@ -107,7 +97,7 @@ export default function HomePage() {
             </ul>
           </section>
         ))}
-      </section>
+      </Container>
     </>
   )
 }
