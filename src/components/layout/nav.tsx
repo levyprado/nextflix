@@ -31,7 +31,7 @@ export default function Nav() {
   const pathname = usePathname()
 
   return (
-    <nav className='absolute top-1/2 left-1/2 hidden -translate-1/2 gap-6 font-bold md:flex xl:gap-8'>
+    <nav className='hidden gap-6 font-bold sm:flex xl:gap-8'>
       {navItems.map(({ href, label }) => {
         const isActive = pathname === href
 
