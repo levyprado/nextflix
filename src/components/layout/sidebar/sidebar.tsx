@@ -2,10 +2,10 @@ import { MOVIE_GENRES, SIDEBAR_NAV, TV_GENRES } from '@/lib/constants'
 import { cn } from '@/lib/utils'
 import { CancelIcon, PanelLeftIcon } from '@hugeicons/core-free-icons'
 import { type Dispatch, type SetStateAction } from 'react'
-import { Button } from '../ui/button'
-import Icon from '../ui/icon'
-import SidebarGenres from './sidebar/sidebar-genres'
-import SidebarSection from './sidebar/sidebar-section'
+import { Button } from '../../ui/button'
+import Icon from '../../ui/icon'
+import SidebarGenres from './sidebar-genres'
+import SidebarSection from './sidebar-section'
 
 type SidebarProps = {
   isOpen: boolean

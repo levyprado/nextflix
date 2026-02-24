@@ -3,7 +3,7 @@
 import { cn } from '@/lib/utils'
 import { useState } from 'react'
 import Header from './header'
-import Sidebar from './sidebar'
+import Sidebar from './sidebar/sidebar'
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
   const [isOpen, setIsOpen] = useState(false)
