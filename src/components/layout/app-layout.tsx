@@ -14,7 +14,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
       <div
         className={cn(
           'flex flex-1 flex-col overflow-x-auto transition-[padding] duration-450 ease-[cubic-bezier(0.32,0.72,0,1)]',
-          isOpen ? 'lg:pl-[280px]' : 'pl-0',
+          isOpen ? 'lg:pl-sidebar' : 'pl-0',
         )}
       >
         <Header isOpen={isOpen} setIsOpen={setIsOpen} />

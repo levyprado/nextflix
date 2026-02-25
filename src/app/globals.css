@@ -3,6 +3,8 @@
 :root {
   --background: #0a0a0a;
   --foreground: #ededed;
+
+  --sidebar-width: 280px;
 }
 
 @theme inline {
@@ -10,6 +12,7 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-body);
   --font-heading: var(--font-heading);
+  --spacing-sidebar: var(--sidebar-width);
 }
 
 @layer base {
