@@ -16,7 +16,7 @@ export default function Sidebar({ isOpen, setIsOpen }: SidebarProps) {
   return (
     <aside
       className={cn(
-        'fixed top-0 left-0 z-50 flex h-screen w-[280px] flex-col bg-background transition-transform duration-450 ease-[cubic-bezier(0.32,0.72,0,1)]',
+        'fixed top-0 left-0 z-50 flex h-dvh w-[280px] flex-col bg-background transition-transform duration-450 ease-[cubic-bezier(0.32,0.72,0,1)]',
         isOpen ? 'translate-x-0' : '-translate-x-full',
       )}
     >
@@ -43,7 +43,7 @@ export default function Sidebar({ isOpen, setIsOpen }: SidebarProps) {
         </Button>
       </div>
 
-      <div className='flex flex-1 flex-col gap-6 overflow-y-auto overscroll-contain pt-1 pb-4 [scrollbar-width:none]'>
+      <div className='flex flex-1 flex-col gap-5 overflow-y-auto overscroll-contain pt-1 pb-4 [scrollbar-width:none]'>
         {SIDEBAR_NAV.map((section) => (
           <SidebarSection key={section.title} section={section} />
         ))}

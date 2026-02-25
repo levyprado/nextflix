@@ -66,6 +66,13 @@ export const MOVIE_GENRES: Genre[] = [
   { id: 36, name: 'History', slug: 'history' },
   { id: 27, name: 'Horror', slug: 'horror' },
   { id: 10402, name: 'Music', slug: 'music' },
+  { id: 9648, name: 'Mystery', slug: 'mistery' },
+  { id: 10749, name: 'Romance', slug: 'romance' },
+  { id: 878, name: 'Science Fiction', slug: 'sci-fi' },
+  { id: 10770, name: 'TV Movie', slug: 'tv-movie' },
+  { id: 53, name: 'Thriller', slug: 'thriller' },
+  { id: 10752, name: 'War', slug: 'war' },
+  { id: 37, name: 'Western', slug: 'western' },
 ]
 
 export const TV_GENRES: Genre[] = [
@@ -81,4 +88,8 @@ export const TV_GENRES: Genre[] = [
   { id: 10763, name: 'News', slug: 'news' },
   { id: 10764, name: 'Reality', slug: 'reality' },
   { id: 10765, name: 'Sci-Fi & Fantasy', slug: 'sci-fi-fantasy' },
+  { id: 10766, name: 'Soap', slug: 'soap' },
+  { id: 10767, name: 'Talk', slug: 'talk' },
+  { id: 10768, name: 'War & Politics', slug: 'war-politics' },
+  { id: 37, name: 'Western', slug: 'western' },
 ]

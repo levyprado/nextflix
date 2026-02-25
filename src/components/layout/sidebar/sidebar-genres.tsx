@@ -1,7 +1,11 @@
+'use client'
+
 import Icon from '@/components/ui/icon'
 import { Genre } from '@/lib/constants'
+import { cn } from '@/lib/utils'
 import { ArrowDownIcon, GridIcon } from '@hugeicons/core-free-icons'
 import Link from 'next/link'
+import { useState } from 'react'
 
 type SidebarGenresProps = {
   title: string
@@ -14,7 +18,10 @@ export default function SidebarGenres({
   genres,
   basePath,
 }: SidebarGenresProps) {
+  const [isExpanded, setIsExpanded] = useState(false)
+
   const initialGenres = genres.slice(0, 3)
+  const remainingGenres = genres.slice(3)
 
   return (
     <section className='flex flex-col gap-2'>
@@ -25,16 +32,54 @@ export default function SidebarGenres({
         </h3>
       </div>
 
-      <ul>
-        {initialGenres.map((genre) => (
-          <GenreLink key={genre.id} genre={genre} basePath={basePath} />
-        ))}
-      </ul>
+      <div className='relative flex flex-col'>
+        <div
+          className={cn(
+            'transition-all duration-450 ease-[cubic-bezier(0.32,0.72,0,1)]',
+            !isExpanded
+              ? 'mask-[linear-gradient(to_bottom,background_70%,transparent_100%)]'
+              : 'mask-none',
+          )}
+        >
+          <ul className='flex flex-col gap-0.5'>
+            {initialGenres.map((genre) => (
+              <GenreLink key={genre.id} genre={genre} basePath={basePath} />
+            ))}
+          </ul>
 
-      <button className='mx-4 flex items-center gap-2 text-xs font-semibold text-foreground/40 transition-colors hover:text-foreground/80'>
-        <Icon icon={ArrowDownIcon} size={16} />
-        Show more
-      </button>
+          <div
+            className={cn(
+              'grid transition-all duration-450 ease-[cubic-bezier(0.32,0.72,0,1)]',
+              isExpanded
+                ? 'grid-rows-[1fr] opacity-100'
+                : 'grid-rows-[0fr] opacity-0',
+            )}
+          >
+            <ul className='flex flex-col gap-0.5 overflow-hidden'>
+              {remainingGenres.map((genre) => (
+                <GenreLink key={genre.id} genre={genre} basePath={basePath} />
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <button
+          onClick={() => setIsExpanded(!isExpanded)}
+          className='group mx-4 flex items-center gap-2 py-2 text-xs font-semibold text-foreground/40 transition-colors hover:text-foreground/80'
+        >
+          <Icon
+            icon={ArrowDownIcon}
+            size={16}
+            className={cn(
+              'transition-transform duration-450 ease-[cubic-bezier(0.32,0.72,0,1)]',
+              isExpanded && 'rotate-180',
+            )}
+          />
+          <span>
+            {isExpanded ? 'Show less' : `Show ${remainingGenres.length} more`}
+          </span>
+        </button>
+      </div>
     </section>
   )
 }
