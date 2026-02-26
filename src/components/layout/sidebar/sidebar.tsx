@@ -1,9 +1,9 @@
 import { MOVIE_GENRES, SIDEBAR_NAV, TV_GENRES } from '@/lib/constants'
 import { cn } from '@/lib/utils'
-import { DrawerPreview as Drawer } from '@base-ui/react/drawer'
 import { CancelIcon, PanelLeftIcon } from '@hugeicons/core-free-icons'
 import Link from 'next/link'
 import { useEffect, useState, type Dispatch, type SetStateAction } from 'react'
+import { Drawer } from 'vaul'
 import { Button } from '../../ui/button'
 import Icon from '../../ui/icon'
 import SidebarGenres from './sidebar-genres'
@@ -82,41 +82,35 @@ export default function Sidebar({ isOpen, setIsOpen }: SidebarProps) {
 
       {/* MOBILE DRAWER */}
       {!isDesktop && (
-        <Drawer.Root
-          swipeDirection='left'
-          open={isOpen}
-          onOpenChange={setIsOpen}
-        >
+        <Drawer.Root direction='left' open={isOpen} onOpenChange={setIsOpen}>
           <Drawer.Portal>
-            <Drawer.Backdrop className='fixed inset-0 z-50 bg-background/60 transition-all duration-450 ease-[cubic-bezier(0.32,0.72,0,1)] data-ending-style:opacity-0 data-starting-style:opacity-0' />
-            <Drawer.Viewport className='fixed inset-0 z-50 flex outline-none'>
-              <Drawer.Popup className='h-dvh w-sidebar bg-background transition-transform duration-450 ease-[cubic-bezier(0.32,0.72,0,1)] outline-none data-ending-style:-translate-x-full data-starting-style:-translate-x-full'>
-                <Drawer.Content className='flex h-full flex-col'>
-                  <div className='flex items-center justify-between px-4 py-3'>
-                    <Drawer.Title
-                      render={<Link href='/' />}
-                      onClick={() => setIsOpen(false)}
-                      className='font-heading text-xl font-black tracking-tight uppercase italic underline underline-offset-4'
-                    >
-                      Nextflix
-                    </Drawer.Title>
+            <Drawer.Overlay className='fixed inset-0 z-50 bg-background/60' />
+            <Drawer.Content className='fixed top-0 bottom-0 left-0 z-50 flex h-dvh w-sidebar flex-col bg-background'>
+              <div className='flex items-center justify-between px-4 py-3'>
+                <Drawer.Title asChild>
+                  <Link
+                    href='/'
+                    onClick={() => setIsOpen(false)}
+                    className='font-heading text-xl font-black tracking-tight uppercase italic underline underline-offset-4'
+                  >
+                    Nextflix
+                  </Link>
+                </Drawer.Title>
 
-                    <Drawer.Close
-                      render={<Button variant='secondary' size='icon' />}
-                    >
-                      <Icon icon={CancelIcon} />
-                    </Drawer.Close>
-                  </div>
+                <Drawer.Close asChild>
+                  <Button variant='secondary' size='icon'>
+                    <Icon icon={CancelIcon} />
+                  </Button>
+                </Drawer.Close>
+              </div>
 
-                  <Drawer.Description className='sr-only'>
-                    Main navigation for user settings, social interactions, and
-                    genre filtering.
-                  </Drawer.Description>
+              <Drawer.Description className='sr-only'>
+                Main navigation for user settings, social interactions, and
+                genre filtering.
+              </Drawer.Description>
 
-                  {SidebarContent}
-                </Drawer.Content>
-              </Drawer.Popup>
-            </Drawer.Viewport>
+              {SidebarContent}
+            </Drawer.Content>
           </Drawer.Portal>
         </Drawer.Root>
       )}
