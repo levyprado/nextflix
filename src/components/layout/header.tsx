@@ -1,6 +1,6 @@
 import { cn } from '@/lib/utils'
 import { MenuIcon, Search01Icon } from '@hugeicons/core-free-icons'
-import type { Dispatch, SetStateAction } from 'react'
+import { useEffect, useState, type Dispatch, type SetStateAction } from 'react'
 import Logo from '../logo'
 import { Button } from '../ui/button'
 import Icon from '../ui/icon'
@@ -14,6 +14,17 @@ type HeaderProps = {
 }
 
 export default function Header({ isOpen, setIsOpen }: HeaderProps) {
+  const [isScrolled, setIsScrolled] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50)
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
   return (
     <Container
       as='header'
@@ -22,6 +33,13 @@ export default function Header({ isOpen, setIsOpen }: HeaderProps) {
         isOpen ? 'w-full lg:w-[calc(100%-var(--sidebar-width))]' : 'w-full',
       )}
     >
+      <div
+        className={cn(
+          'pointer-events-none absolute inset-0 -z-10 bg-background transition-all duration-450 ease-[cubic-bezier(0.32,0.72,0,1)]',
+          isScrolled ? 'opacity-100' : 'opacity-0',
+        )}
+      />
+
       <div className='flex items-center gap-6 md:gap-10 xl:gap-14'>
         <div className='flex items-center gap-2 md:gap-3'>
           <Button
