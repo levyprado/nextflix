@@ -13,7 +13,7 @@ const buttonVariants = cva(
           'bg-foreground/15 border-foreground/20 backdrop-blur-md hover:bg-foreground/10',
       },
       size: {
-        default: 'h-11 gap-2 px-6 rounded-full has-[svg]:pl-5.5',
+        default: 'h-11 gap-2 px-6 rounded-full has-[svg]:pl-5',
         icon: 'size-10 rounded-full backdrop-blur-none',
       },
     },
