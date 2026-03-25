@@ -20,10 +20,10 @@ export default function HeroBanner() {
       </div>
 
       <Container className='absolute bottom-[20%] flex max-w-3xl flex-col gap-2'>
-        <h1 className='font-heading text-2xl font-extrabold wrap-break-word uppercase italic'>
+        <h1 className='font-heading text-4xl leading-tight font-bold text-balance wrap-break-word uppercase italic lg:text-6xl lg:leading-none'>
           Mercy
         </h1>
-        <p className='line-clamp-3'>
+        <p className='line-clamp-3 max-w-xl leading-relaxed text-foreground/75 lg:text-lg'>
           In the near future, a detective stands on trial accused of murdering
           his wife. He has ninety minutes to prove his innocence to the advanced
           AI Judge he once championed, before it determines his fate.
