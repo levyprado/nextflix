@@ -18,6 +18,20 @@
 @layer base {
   html {
     @apply antialiased;
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-foreground) transparent;
+  }
+  html::-webkit-scrollbar {
+    width: 6px;
+  }
+  html::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  html::-webkit-scrollbar-thumb {
+    background-color: var(--color-foreground);
+    border-radius: 20px;
+    border: 4px solid transparent;
+    background-clip: content-box;
   }
   body {
     @apply bg-background font-sans text-foreground;
@@ -25,5 +39,15 @@
   button:not(:disabled),
   [role='button']:not(:disabled) {
     @apply cursor-pointer;
+  }
+}
+
+@layer utilities {
+  .no-scrollbar {
+    overflow: auto;
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
   }
 }
