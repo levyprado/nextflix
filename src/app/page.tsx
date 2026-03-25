@@ -32,7 +32,7 @@ export default function HomePage() {
           </p>
           <div className='mt-3 flex flex-wrap gap-2.5'>
             <Button>
-              <Icon icon={PlayIcon} />
+              <Icon icon={PlayIcon} className='fill-background' />
               Watch Now
             </Button>
             <Button variant='secondary'>
