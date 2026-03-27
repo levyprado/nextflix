@@ -2,13 +2,13 @@ import {
   Bookmark02Icon,
   FireIcon,
   NotificationIcon,
-  PlayIcon,
   StarIcon,
   TradeUpIcon,
   UserGroupIcon,
   VideoReplayIcon,
 } from '@hugeicons/core-free-icons'
 import type { IconSvgElement } from '@hugeicons/react'
+import { ROUTES } from './routes'
 
 export type SidebarItem = {
   label: string
@@ -27,18 +27,18 @@ export const SIDEBAR_NAV: SidebarSection[] = [
   {
     title: 'My space',
     items: [
-      { label: 'Watchlist', href: '/watchlist', icon: Bookmark02Icon },
-      { label: 'History', href: '/history', icon: VideoReplayIcon },
-      { label: 'Rated', href: '/rated', icon: StarIcon },
+      { label: 'Watchlist', href: ROUTES.WATCHLIST, icon: Bookmark02Icon },
+      { label: 'History', href: ROUTES.HISTORY, icon: VideoReplayIcon },
+      { label: 'Rated', href: ROUTES.RATED, icon: StarIcon },
     ],
   },
   {
     title: 'Social',
     items: [
-      { label: 'Friends', href: '/friends', icon: UserGroupIcon },
+      { label: 'Friends', href: ROUTES.FRIENDS, icon: UserGroupIcon },
       {
         label: 'Notifications',
-        href: '/notifications',
+        href: ROUTES.NOTIFICATIONS,
         icon: NotificationIcon,
       },
     ],
@@ -46,9 +46,8 @@ export const SIDEBAR_NAV: SidebarSection[] = [
   {
     title: 'Discover',
     items: [
-      { label: 'Trending Now', href: '/trending-now', icon: TradeUpIcon },
-      { label: 'New Releases', href: '/new', icon: FireIcon },
-      { label: 'Continue Watching', href: '/continue', icon: PlayIcon },
+      { label: 'Trending Now', href: ROUTES.TRENDING, icon: TradeUpIcon },
+      { label: 'New Releases', href: ROUTES.NEW, icon: FireIcon },
     ],
   },
 ]
