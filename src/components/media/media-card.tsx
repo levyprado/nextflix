@@ -1,3 +1,4 @@
+import { ROUTES } from '@/lib/routes'
 import type { Movie, TVShow } from '@/lib/tmdb/types'
 import { formatRating } from '@/lib/tmdb/utils'
 import Image from 'next/image'
@@ -14,7 +15,11 @@ export default function MediaCard({ media }: MediaCardProps) {
 
   return (
     <Link
-      href={isMovie ? `/movies/${media.id}` : `/shows/${media.id}`}
+      href={
+        isMovie
+          ? ROUTES.MOVIE_DETAIL(media.id)
+          : ROUTES.TV_SHOW_DETAIL(media.id)
+      }
       className='group flex w-36 shrink-0 flex-col gap-2 md:w-44 xl:w-52 2xl:w-56'
     >
       <div className='relative aspect-2/3 w-full overflow-hidden rounded-xl'>
