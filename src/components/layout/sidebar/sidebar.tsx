@@ -1,4 +1,5 @@
 import { MOVIE_GENRES, SIDEBAR_NAV, TV_GENRES } from '@/lib/constants'
+import { ROUTES } from '@/lib/routes'
 import { cn } from '@/lib/utils'
 import { CancelIcon, PanelLeftIcon } from '@hugeicons/core-free-icons'
 import Link from 'next/link'
@@ -62,7 +63,7 @@ export default function Sidebar({ isOpen, setIsOpen }: SidebarProps) {
         </Button>
         <div className='flex items-center justify-between px-4 py-3 xl:py-5'>
           <Link
-            href='/'
+            href={ROUTES.HOME}
             className='font-heading text-xl font-black tracking-tight uppercase italic underline underline-offset-4'
           >
             Nextflix
@@ -89,7 +90,7 @@ export default function Sidebar({ isOpen, setIsOpen }: SidebarProps) {
               <div className='flex items-center justify-between px-4 py-3'>
                 <Drawer.Title asChild>
                   <Link
-                    href='/'
+                    href={ROUTES.HOME}
                     onClick={() => setIsOpen(false)}
                     className='font-heading text-xl font-black tracking-tight uppercase italic underline underline-offset-4'
                   >
