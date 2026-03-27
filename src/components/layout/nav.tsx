@@ -1,5 +1,6 @@
 'use client'
 
+import { ROUTES } from '@/lib/routes'
 import { cn } from '@/lib/utils'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
@@ -7,23 +8,23 @@ import { usePathname } from 'next/navigation'
 const navItems = [
   {
     label: 'Home',
-    href: '/',
+    href: ROUTES.HOME,
   },
   {
     label: 'Movies',
-    href: '/movies',
+    href: ROUTES.MOVIES,
   },
   {
     label: 'TV Shows',
-    href: '/tv-shows',
+    href: ROUTES.TV_SHOWS,
   },
   {
     label: 'New',
-    href: '/new',
+    href: ROUTES.NEW,
   },
   {
     label: 'Watchlist',
-    href: '/watchlist',
+    href: ROUTES.WATCHLIST,
   },
 ]
 
