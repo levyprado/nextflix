@@ -1,3 +1,10 @@
+export type PaginatedResponse<T> = {
+  page: number
+  results: T[]
+  total_pages: number
+  total_results: number
+}
+
 export type Movie = {
   adult: boolean
   backdrop_path: string | null
@@ -41,7 +48,7 @@ export type MovieDetails = Omit<Movie, 'genre_ids'> & {
   tagline: string
 }
 
-export type TVSerie = {
+export type TVShow = {
   backdrop_path: string | null
   first_air_date: string
   genre_ids: number[]
@@ -57,7 +64,7 @@ export type TVSerie = {
   vote_count: number
 }
 
-export type TVSerieDetails = Omit<TVSerie, 'genre_ids'> & {
+export type TVShowDetails = Omit<TVShow, 'genre_ids'> & {
   adult: false
   created_by: {
     id: number
