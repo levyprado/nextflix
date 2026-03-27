@@ -1,42 +1,32 @@
 import Container from '@/components/layout/container'
 import HeroBanner from '@/components/media/hero-banner'
-import MediaCard from '@/components/media/media-card'
-import ScrollSection from '@/components/media/scroll-section'
+import MediaList from '@/components/media/media-list'
+import { MediaRowSkeleton } from '@/components/media/skeletons'
 import {
   getNowPlayingMovies,
   getPopularMovies,
   getTopRatedMovies,
   getUpcomingMovies,
 } from '@/lib/tmdb/api'
+import { Suspense } from 'react'
 
-export default async function HomePage() {
-  const [nowPlaying, popular, topRated, upcoming] = await Promise.all([
-    getNowPlayingMovies(),
-    getPopularMovies(),
-    getTopRatedMovies(),
-    getUpcomingMovies(),
-  ])
+const ROWS = [
+  { title: 'Now Playing', fetcher: getNowPlayingMovies },
+  { title: 'Popular Movies', fetcher: getPopularMovies },
+  { title: 'Top Rated Movies', fetcher: getTopRatedMovies },
+  { title: 'Upcoming', fetcher: getUpcomingMovies },
+]
 
-  const sections = [
-    { title: 'Now Playing', items: nowPlaying.results },
-    { title: 'Popular Movies', items: popular.results },
-    { title: 'Top Rated Movies', items: topRated.results },
-    { title: 'Upcoming Movies', items: upcoming.results },
-  ]
-
+export default function HomePage() {
   return (
     <>
       <HeroBanner />
 
       <Container as='section' className='-mt-12 flex flex-col gap-16 pb-16'>
-        {sections.map((section) => (
-          <ScrollSection key={section.title} title={section.title}>
-            {section.items.map((item) => (
-              <li key={item.id}>
-                <MediaCard media={item} />
-              </li>
-            ))}
-          </ScrollSection>
+        {ROWS.map((row) => (
+          <Suspense key={row.title} fallback={<MediaRowSkeleton />}>
+            <MediaList title={row.title} fetcher={row.fetcher} />
+          </Suspense>
         ))}
       </Container>
     </>
