@@ -2,12 +2,12 @@ export const ROUTES = {
   HOME: '/',
 
   MOVIES: '/movies',
-  MOVIE_DETAIL: (id: number) => `/movies/${id}`,
-  MOVIE_GENRE: (slug: string) => `/movies/genre/${slug}`,
+  MOVIE_GENRE: (slug: string) => `/movies/${slug}`,
+  MOVIE_DETAIL: (id: number) => `/movie/${id}`,
 
   TV_SHOWS: '/tv-shows',
-  TV_SHOW_DETAIL: (id: number) => `/tv-shows/${id}`,
-  TV_SHOW_GENRE: (slug: string) => `/tv-shows/genre/${slug}`,
+  TV_SHOW_GENRE: (slug: string) => `/tv-shows/${slug}`,
+  TV_SHOW_DETAIL: (id: number) => `/tv-show/${id}`,
 
   WATCHLIST: '/watchlist',
   HISTORY: '/history',
