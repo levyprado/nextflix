@@ -1,3 +1,4 @@
+import Container from '../layout/container'
 import Skeleton from '../ui/skeleton'
 
 export function MediaCardSkeleton() {
@@ -31,5 +32,29 @@ export function MediaRowSkeleton() {
         </li>
       ))}
     </ScrollSectionSkeleton>
+  )
+}
+
+export function HeroBannerSkeleton() {
+  return (
+    <div className='relative h-[90svh] w-full animate-pulse bg-foreground/10'>
+      <div>
+        <div className='absolute inset-0 bg-linear-to-r from-background via-transparent to-transparent' />
+        <div className='absolute inset-0 bg-linear-to-t from-background via-transparent to-transparent' />
+      </div>
+
+      <Container className='absolute bottom-[20%] flex w-full max-w-3xl flex-col'>
+        <Skeleton className='h-9 w-64 lg:h-14 lg:w-4/6' />
+        <div className='mt-6 space-y-3'>
+          {[...Array(3).keys()].map((i) => (
+            <Skeleton key={i} className='h-4 w-full lg:h-5' />
+          ))}
+        </div>
+        <div className='mt-6 flex flex-wrap gap-2.5'>
+          <Skeleton className='h-11 w-40 rounded-full' />
+          <Skeleton className='h-11 w-40 rounded-full' />
+        </div>
+      </Container>
+    </div>
   )
 }
