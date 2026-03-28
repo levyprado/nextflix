@@ -1,7 +1,10 @@
 import Container from '@/components/layout/container'
-import HeroBanner from '@/components/media/hero-banner'
+import HeroSection from '@/components/media/hero-section'
 import MediaList from '@/components/media/media-list'
-import { MediaRowSkeleton } from '@/components/media/skeletons'
+import {
+  HeroBannerSkeleton,
+  MediaRowSkeleton,
+} from '@/components/media/skeletons'
 import {
   getNowPlayingMovies,
   getPopularMovies,
@@ -20,9 +23,14 @@ const ROWS = [
 export default function HomePage() {
   return (
     <>
-      <HeroBanner />
+      <Suspense fallback={<HeroBannerSkeleton />}>
+        <HeroSection />
+      </Suspense>
 
-      <Container as='section' className='-mt-12 flex flex-col gap-16 pb-16'>
+      <Container
+        as='section'
+        className='relative -mt-12 flex flex-col gap-16 pb-16'
+      >
         {ROWS.map((row) => (
           <Suspense key={row.title} fallback={<MediaRowSkeleton />}>
             <MediaList title={row.title} fetcher={row.fetcher} />
