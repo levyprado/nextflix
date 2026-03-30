@@ -8,6 +8,9 @@ const nextConfig: NextConfig = {
       {
         hostname: 'image.tmdb.org',
       },
+      {
+        hostname: 'img.youtube.com',
+      },
     ],
   },
 }
