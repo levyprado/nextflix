@@ -18,7 +18,9 @@ export const getUpcomingMovies = () => {
 }
 
 export const getMovieDetails = (id: number) => {
-  return tmdbFetch<MovieDetails>(`/movie/${id}`)
+  return tmdbFetch<MovieDetails>(
+    `/movie/${id}?append_to_response=credits,videos,images,recommendations,reviews`,
+  )
 }
 
 export const getTrendingAll = () => {
