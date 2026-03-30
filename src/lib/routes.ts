@@ -9,6 +9,8 @@ export const ROUTES = {
   TV_SHOW_GENRE: (slug: string) => `/tv-shows/${slug}`,
   TV_SHOW_DETAIL: (id: number) => `/tv-show/${id}`,
 
+  PERSON: (id: number) => `/person/${id}`,
+
   WATCHLIST: '/watchlist',
   HISTORY: '/history',
   RATED: '/rated',
