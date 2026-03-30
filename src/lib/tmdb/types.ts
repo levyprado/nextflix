@@ -5,6 +5,87 @@ export type PaginatedResponse<T> = {
   total_results: number
 }
 
+export type Genre = { id: number; name: string }
+
+export type ProductionCompany = {
+  id: number
+  logo_path: string | null
+  name: string
+  origin_country: string
+}
+
+export type ProductionCountry = { iso_3166_1: string; name: string }
+
+export type CastMember = {
+  id: number
+  name: string
+  original_name: string
+  character: string
+  profile_path: string | null
+  order: number
+  adult: boolean
+  gender: 0 | 1 | 2 | 3
+  known_for_department: string
+  popularity: number
+  credit_id: string
+  cast_id: number
+}
+
+export type CrewMember = {
+  id: number
+  name: string
+  original_name: string
+  department: string
+  job: string
+  profile_path: string | null
+  adult: boolean
+  gender: 0 | 1 | 2 | 3
+  known_for_department: string
+  popularity: number
+  credit_id: string
+}
+
+export type TMDBImage = {
+  aspect_ratio: number
+  file_path: string
+  height: number
+  iso_639_1: string | null
+  iso_3166_1: string | null
+  vote_average: number
+  vote_count: number
+  width: number
+}
+
+export type Images = {
+  backdrops: TMDBImage[]
+  logos: TMDBImage[]
+  posters: TMDBImage[]
+}
+
+export type VideoSite = 'YouTube' | 'Vimeo'
+export type VideoType =
+  | 'Trailer'
+  | 'Teaser'
+  | 'Clip'
+  | 'Featurette'
+  | 'Behind the Scenes'
+  | 'Bloopers'
+
+export type Videos = {
+  results: {
+    id: string
+    iso_639_1: string
+    iso_3166_1: string
+    key: string
+    name: string
+    official: boolean
+    published_at: string
+    site: VideoSite
+    size: 360 | 480 | 720 | 1080
+    type: VideoType
+  }[]
+}
+
 export type Movie = {
   adult: boolean
   backdrop_path: string | null
@@ -30,22 +111,21 @@ export type MovieDetails = Omit<Movie, 'genre_ids'> & {
     backdrop_path: string | null
   } | null
   budget: number
-  genres: { id: number; name: string }[]
+  credits: { cast: CastMember[]; crew: CrewMember[] }
+  genres: Genre[]
   homepage: string
-  imdb_id: string
+  images: Images
+  imdb_id: string | null
   origin_country: string[]
-  production_companies: {
-    id: number
-    logo_path: string
-    name: string
-    origin_country: string
-  }[]
-  production_countries: { iso_3166_1: string; name: string }[]
+  production_companies: ProductionCompany[]
+  production_countries: ProductionCountry[]
+  recommendations: PaginatedResponse<Movie>
   revenue: number
   runtime: number
   spoken_languages: { english_name: string; iso_639_1: string; name: string }[]
   status: string
   tagline: string
+  videos: Videos
 }
 
 export type TVShow = {
