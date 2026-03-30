@@ -1,4 +1,7 @@
 import Container from '@/components/layout/container'
+import CastSection from '@/components/media/cast-section'
+import RecommendationsSection from '@/components/media/recommendations-section'
+import TrailersSection from '@/components/media/trailers-section'
 import { Button, buttonVariants } from '@/components/ui/button'
 import Icon from '@/components/ui/icon'
 import { ROUTES } from '@/lib/routes'
@@ -26,19 +29,21 @@ export default async function MovieDetailPage({
   const { id } = await params
   const movie = await getMovieDetails(Number(id))
 
+  console.log(movie)
+
   if (!movie) notFound()
 
   return (
     <div className='min-h-screen pb-16'>
       <div className='relative h-[50svh] w-full lg:h-[70vh]'>
-        <div className='absolute inset-0 -z-10'>
+        <div className='absolute inset-0 -z-10 bg-foreground/10'>
           <Image
             src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
             alt={`${movie.title} backdrop`}
             fill
             priority
             sizes='100vw'
-            className='object-cover'
+            className='object-cover object-center lg:object-[85%_15%]'
           />
           <div className='absolute inset-0 bg-linear-to-r from-background via-transparent to-transparent' />
           <div className='absolute inset-0 bg-linear-to-t from-background via-background/20 to-transparent' />
@@ -48,7 +53,7 @@ export default async function MovieDetailPage({
       <Container className='relative mx-auto -mt-32 flex max-w-7xl flex-col gap-12 md:gap-20 lg:-mt-48'>
         <section className='flow-root space-y-4'>
           {/* Poster Image */}
-          <div className='relative float-left mr-4 mb-2 aspect-2/3 w-2/5 max-w-64 shrink-0 overflow-hidden rounded-2xl md:mr-8 md:mb-4'>
+          <div className='relative float-left mr-4 mb-2 aspect-2/3 w-2/5 max-w-64 shrink-0 overflow-hidden rounded-2xl bg-foreground/10 md:mr-8 md:mb-4'>
             <Image
               src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
               alt={movie.title}
@@ -60,15 +65,15 @@ export default async function MovieDetailPage({
 
           {/* Data */}
           <div className='mb-auto space-y-4'>
-            <h1 className='font-heading text-3xl leading-none font-bold text-balance md:text-4xl lg:text-6xl'>
+            <h1 className='font-heading text-3xl leading-none font-bold text-balance wrap-break-word md:text-4xl lg:text-6xl'>
               {movie.title}
             </h1>
 
-            <div className='flex flex-col gap-4 md:flex-row md:flex-wrap md:items-center'>
+            <div className='space-y-4 md:flex md:flex-wrap md:items-center md:gap-4 md:space-y-0'>
               {/* Metadata */}
               <div className='flex flex-wrap items-center gap-3 text-sm'>
-                <span className='flex items-center gap-1.5 rounded-full bg-amber-200/20 px-2.5 py-0.5 text-amber-300'>
-                  <Icon icon={StarIcon} size={16} className='fill-amber-300' />
+                <span className='flex items-center gap-1.5 rounded-full bg-yellow-400/20 px-2.5 py-0.5 text-yellow-400'>
+                  <Icon icon={StarIcon} size={16} className='fill-yellow-400' />
                   {formatRating(movie.vote_average)}
                 </span>
                 <span className='flex items-center gap-1.5 text-foreground/60'>
@@ -105,11 +110,11 @@ export default async function MovieDetailPage({
             )}
 
             {/* Overview */}
-            <p className='leading-relaxed text-pretty text-foreground/90 lg:text-lg'>
+            <p className='max-w-5xl leading-relaxed text-pretty text-foreground/90 lg:text-lg'>
               {movie.overview}
             </p>
 
-            <div className='flex flex-wrap gap-3'>
+            <div className='mt-6 flex flex-wrap gap-3'>
               <Button>
                 <Icon icon={PlayIcon} className='fill-black' />
                 Watch
@@ -137,7 +142,10 @@ export default async function MovieDetailPage({
                   href={`https://www.imdb.com/title/${movie.imdb_id}`}
                   target='_blank'
                   rel='noopener noreferrer'
-                  className={cn(buttonVariants({ variant: 'secondary' }))}
+                  className={cn(
+                    buttonVariants(),
+                    'border-yellow-400/30 bg-yellow-400/20 text-yellow-400 hover:bg-yellow-400/30',
+                  )}
                 >
                   <Icon icon={Share05Icon} />
                   IMDB
@@ -147,58 +155,13 @@ export default async function MovieDetailPage({
           </div>
         </section>
 
-        {/* <ScrollSection title='Top Cast'>
-          {[...Array(12).keys()].map((i) => (
-            <li key={i}>
-              <Link
-                href='/actor/123'
-                className='group flex w-24 flex-col gap-2.5 md:w-32 lg:w-40'
-              >
-                <div className='relative aspect-square overflow-hidden rounded-full'>
-                  <Image
-                    src='https://image.tmdb.org/t/p/w342/xcCv7C1zNuIr3JeNau9UjZLaVC1.jpg'
-                    alt={'Actor name'}
-                    fill
-                    className='object-cover object-[70%_30%] transition-[scale] group-hover:scale-107'
-                  />
-                </div>
-                <div className='space-y-0.5 text-center text-xs md:text-sm lg:text-base'>
-                  <p className='truncate leading-tight font-semibold text-foreground/90'>
-                    Chris Pratt
-                  </p>
-                  <p className='truncate leading-tight text-foreground/60'>
-                    Judge Maddox
-                  </p>
-                </div>
-              </Link>
-            </li>
-          ))}
-        </ScrollSection> */}
-        {/* <ScrollSection title='Trailers & Videos'>
-          {[...Array(6).keys()].map((i) => (
-            <li key={i}>
-              <button className='group flex w-64 flex-col gap-1.5'>
-                <div className='relative aspect-video overflow-hidden rounded-xl bg-foreground/15'>
-                  <div className='absolute inset-0 flex items-center justify-center bg-background/30 transition-colors group-hover:bg-background/20'>
-                    <div className='absolute top-1/2 left-1/2 flex size-12 -translate-1/2 items-center justify-center rounded-full bg-foreground/20 backdrop-blur-md transition-colors group-hover:bg-foreground/30'>
-                      <Icon icon={PlayIcon} className='fill-foreground' />
-                    </div>
-                  </div>
-                </div>
-                <p className='truncate text-start text-sm font-medium text-foreground/90 transition-colors group-hover:text-foreground'>
-                  Trailer {i}
-                </p>
-              </button>
-            </li>
-          ))}
-        </ScrollSection> */}
-        {/* <ScrollSection title='You Might Also Like'>
-          {[...Array(6).keys()].map((i) => (
-            <li key={i}>
-              <MediaCard />
-            </li>
-          ))}
-        </ScrollSection> */}
+        <CastSection cast={movie.credits.cast} />
+
+        <TrailersSection videos={movie.videos.results} />
+
+        <RecommendationsSection
+          recommendations={movie.recommendations.results}
+        />
       </Container>
     </div>
   )
