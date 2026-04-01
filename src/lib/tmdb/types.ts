@@ -45,23 +45,6 @@ export type CrewMember = {
   credit_id: string
 }
 
-export type TMDBImage = {
-  aspect_ratio: number
-  file_path: string
-  height: number
-  iso_639_1: string | null
-  iso_3166_1: string | null
-  vote_average: number
-  vote_count: number
-  width: number
-}
-
-export type Images = {
-  backdrops: TMDBImage[]
-  logos: TMDBImage[]
-  posters: TMDBImage[]
-}
-
 export type VideoSite = 'YouTube' | 'Vimeo'
 export type VideoType =
   | 'Trailer'
@@ -114,7 +97,6 @@ export type MovieDetails = Omit<Movie, 'genre_ids'> & {
   credits: { cast: CastMember[]; crew: CrewMember[] }
   genres: Genre[]
   homepage: string
-  images: Images
   imdb_id: string | null
   origin_country: string[]
   production_companies: ProductionCompany[]
