@@ -26,3 +26,23 @@ export const getMovieDetails = (id: number) => {
 export const getTrendingAll = () => {
   return tmdbFetch<PaginatedResponse<Movie | TVShow>>('/trending/all/week')
 }
+
+export const getTrendingTVShows = () => {
+  return tmdbFetch<PaginatedResponse<TVShow>>('/trending/tv/week')
+}
+
+export const getActionMovies = () => {
+  return tmdbFetch<PaginatedResponse<Movie>>('/discover/movie?with_genres=28')
+}
+
+export const getComedyMovies = () => {
+  return tmdbFetch<PaginatedResponse<Movie>>('/discover/movie?with_genres=35')
+}
+
+export const getHorrorMovies = () => {
+  return tmdbFetch<PaginatedResponse<Movie>>('/discover/movie?with_genres=27')
+}
+
+export const getThrillerMovies = () => {
+  return tmdbFetch<PaginatedResponse<Movie>>('/discover/movie?with_genres=53')
+}
