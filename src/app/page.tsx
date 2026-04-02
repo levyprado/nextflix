@@ -6,18 +6,30 @@ import {
   MediaRowSkeleton,
 } from '@/components/media/skeletons'
 import {
+  getActionMovies,
+  getComedyMovies,
+  getHorrorMovies,
   getNowPlayingMovies,
   getPopularMovies,
+  getThrillerMovies,
   getTopRatedMovies,
+  getTrendingAll,
+  getTrendingTVShows,
   getUpcomingMovies,
 } from '@/lib/tmdb/api'
 import { Suspense } from 'react'
 
 const ROWS = [
-  { title: 'Now Playing', fetcher: getNowPlayingMovies },
+  { title: 'Trending Now', fetcher: getTrendingAll },
   { title: 'Popular Movies', fetcher: getPopularMovies },
-  { title: 'Top Rated Movies', fetcher: getTopRatedMovies },
-  { title: 'Upcoming', fetcher: getUpcomingMovies },
+  { title: 'Trending TV Shows', fetcher: getTrendingTVShows },
+  { title: 'Top Rated', fetcher: getTopRatedMovies },
+  { title: 'Explosive Action Hits', fetcher: getActionMovies },
+  { title: 'Laugh Out Loud Comedy', fetcher: getComedyMovies },
+  { title: 'Terrifying Horror', fetcher: getHorrorMovies },
+  { title: 'Pulse-Pounding Thriller Hits', fetcher: getThrillerMovies },
+  { title: 'New Releases', fetcher: getNowPlayingMovies },
+  { title: 'Coming Soon', fetcher: getUpcomingMovies },
 ]
 
 export default function HomePage() {
