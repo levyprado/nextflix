@@ -29,8 +29,6 @@ export default async function MovieDetailPage({
   const { id } = await params
   const movie = await getMovieDetails(Number(id))
 
-  console.log(movie)
-
   if (!movie) notFound()
 
   return (
