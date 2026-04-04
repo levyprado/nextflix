@@ -1,5 +1,11 @@
 import { tmdbFetch } from './client'
-import type { Movie, MovieDetails, PaginatedResponse, TVShow } from './types'
+import type {
+  Movie,
+  MovieDetails,
+  PaginatedResponse,
+  TVShow,
+  TVShowDetails,
+} from './types'
 
 export const getNowPlayingMovies = () => {
   return tmdbFetch<PaginatedResponse<Movie>>('/movie/now_playing')
@@ -20,6 +26,12 @@ export const getUpcomingMovies = () => {
 export const getMovieDetails = (id: number) => {
   return tmdbFetch<MovieDetails>(
     `/movie/${id}?append_to_response=credits,videos,recommendations`,
+  )
+}
+
+export const getTVShowDetails = (id: number) => {
+  return tmdbFetch<TVShowDetails>(
+    `/tv/${id}?append_to_response=credits,videos,recommendations,external_ids`,
   )
 }
 
