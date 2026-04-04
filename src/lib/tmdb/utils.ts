@@ -11,3 +11,7 @@ export const formatRuntime = (minutes: number): string => {
 export const getReleaseYear = (date: string): string => {
   return date ? new Date(date).getFullYear().toString() : '-'
 }
+
+export const formatAirDate = (air_date: string): string => {
+  return new Date(air_date).toLocaleDateString('en')
+}
