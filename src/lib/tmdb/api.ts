@@ -7,54 +7,42 @@ import type {
   TVShowDetails,
 } from './types'
 
-export const getNowPlayingMovies = () => {
-  return tmdbFetch<PaginatedResponse<Movie>>('/movie/now_playing')
-}
+//  Movies
 
-export const getPopularMovies = () => {
-  return tmdbFetch<PaginatedResponse<Movie>>('/movie/popular')
-}
+export const getNowPlayingMovies = () =>
+  tmdbFetch<PaginatedResponse<Movie>>('/movie/now_playing')
 
-export const getTopRatedMovies = () => {
-  return tmdbFetch<PaginatedResponse<Movie>>('/movie/top_rated')
-}
+export const getPopularMovies = () =>
+  tmdbFetch<PaginatedResponse<Movie>>('/movie/popular')
 
-export const getUpcomingMovies = () => {
-  return tmdbFetch<PaginatedResponse<Movie>>('/movie/upcoming')
-}
+export const getTopRatedMovies = () =>
+  tmdbFetch<PaginatedResponse<Movie>>('/movie/top_rated')
 
-export const getMovieDetails = (id: number) => {
-  return tmdbFetch<MovieDetails>(
+export const getUpcomingMovies = () =>
+  tmdbFetch<PaginatedResponse<Movie>>('/movie/upcoming')
+
+export const getMoviesByGenre = (id: number) =>
+  tmdbFetch<PaginatedResponse<Movie>>(`/discover/movie?with_genres=${id}`)
+
+export const getMovieDetails = (id: number) =>
+  tmdbFetch<MovieDetails>(
     `/movie/${id}?append_to_response=credits,videos,recommendations`,
   )
-}
 
-export const getTVShowDetails = (id: number) => {
-  return tmdbFetch<TVShowDetails>(
+// TV Shows
+
+export const getTVShowsByGenre = (id: number) =>
+  tmdbFetch<PaginatedResponse<TVShow>>(`/discover/tv?with_genres=${id}`)
+
+export const getTVShowDetails = (id: number) =>
+  tmdbFetch<TVShowDetails>(
     `/tv/${id}?append_to_response=credits,videos,recommendations,external_ids`,
   )
-}
 
-export const getTrendingAll = () => {
-  return tmdbFetch<PaginatedResponse<Movie | TVShow>>('/trending/all/week')
-}
+// Trending
 
-export const getTrendingTVShows = () => {
-  return tmdbFetch<PaginatedResponse<TVShow>>('/trending/tv/week')
-}
+export const getTrendingAll = () =>
+  tmdbFetch<PaginatedResponse<Movie | TVShow>>('/trending/all/week')
 
-export const getActionMovies = () => {
-  return tmdbFetch<PaginatedResponse<Movie>>('/discover/movie?with_genres=28')
-}
-
-export const getComedyMovies = () => {
-  return tmdbFetch<PaginatedResponse<Movie>>('/discover/movie?with_genres=35')
-}
-
-export const getHorrorMovies = () => {
-  return tmdbFetch<PaginatedResponse<Movie>>('/discover/movie?with_genres=27')
-}
-
-export const getThrillerMovies = () => {
-  return tmdbFetch<PaginatedResponse<Movie>>('/discover/movie?with_genres=53')
-}
+export const getTrendingTVShows = () =>
+  tmdbFetch<PaginatedResponse<TVShow>>('/trending/tv/week')

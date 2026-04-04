@@ -5,13 +5,11 @@ import {
   HeroBannerSkeleton,
   MediaRowSkeleton,
 } from '@/components/media/skeletons'
+import { MOVIE_GENRES } from '@/lib/constants'
 import {
-  getActionMovies,
-  getComedyMovies,
-  getHorrorMovies,
+  getMoviesByGenre,
   getNowPlayingMovies,
   getPopularMovies,
-  getThrillerMovies,
   getTopRatedMovies,
   getTrendingAll,
   getTrendingTVShows,
@@ -19,15 +17,28 @@ import {
 } from '@/lib/tmdb/api'
 import { Suspense } from 'react'
 
+const [ACTION, COMEDY, HORROR, THRILLER] = [28, 35, 27, 53].map(
+  (id) => MOVIE_GENRES.find((g) => g.id === id)!,
+)
+
 const ROWS = [
   { title: 'Trending Now', fetcher: getTrendingAll },
   { title: 'Popular Movies', fetcher: getPopularMovies },
   { title: 'Trending TV Shows', fetcher: getTrendingTVShows },
   { title: 'Top Rated', fetcher: getTopRatedMovies },
-  { title: 'Explosive Action Hits', fetcher: getActionMovies },
-  { title: 'Laugh Out Loud Comedy', fetcher: getComedyMovies },
-  { title: 'Terrifying Horror', fetcher: getHorrorMovies },
-  { title: 'Pulse-Pounding Thriller Hits', fetcher: getThrillerMovies },
+  {
+    title: 'Explosive Action Hits',
+    fetcher: () => getMoviesByGenre(ACTION.id),
+  },
+  {
+    title: 'Laugh Out Loud Comedy',
+    fetcher: () => getMoviesByGenre(COMEDY.id),
+  },
+  { title: 'Terrifying Horror', fetcher: () => getMoviesByGenre(HORROR.id) },
+  {
+    title: 'Pulse-Pounding Thriller Hits',
+    fetcher: () => getMoviesByGenre(THRILLER.id),
+  },
   { title: 'New Releases', fetcher: getNowPlayingMovies },
   { title: 'Coming Soon', fetcher: getUpcomingMovies },
 ]
