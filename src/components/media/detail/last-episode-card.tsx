@@ -38,7 +38,7 @@ export default function LastEpisodeCard({ episode }: LastEpisodeCardProps) {
             </div>
             <div className='flex flex-col items-center'>
               <span className='text-lg leading-tight font-bold text-yellow-400'>
-                7.3
+                {episode.vote_average.toFixed(1)}
               </span>
               <span className='text-sm leading-tight text-foreground/60'>
                 Rating
