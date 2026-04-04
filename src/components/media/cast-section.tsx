@@ -1,5 +1,5 @@
 import { ROUTES } from '@/lib/routes'
-import { CastMember } from '@/lib/tmdb/types'
+import type { CastMember } from '@/lib/tmdb/types'
 import { UserIcon } from '@hugeicons/core-free-icons'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -11,6 +11,8 @@ type CastSectionProps = {
 }
 
 export default async function CastSection({ cast }: CastSectionProps) {
+  if (cast.length === 0) return null
+
   return (
     <ScrollSection title='Top Cast'>
       {cast.slice(0, 10).map((member) => (

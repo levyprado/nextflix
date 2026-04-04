@@ -1,4 +1,4 @@
-import { Videos } from '@/lib/tmdb/types'
+import type { Videos } from '@/lib/tmdb/types'
 import { PlayIcon } from '@hugeicons/core-free-icons'
 import Image from 'next/image'
 import Icon from '../ui/icon'
