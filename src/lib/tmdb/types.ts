@@ -126,6 +126,21 @@ export type TVShow = {
   vote_count: number
 }
 
+export interface Episode {
+  id: number
+  name: string
+  overview: string
+  vote_average: number
+  vote_count: number
+  air_date: string
+  episode_number: number
+  production_code: string
+  runtime: number
+  season_number: number
+  show_id: number
+  still_path: string | null
+}
+
 export type TVShowDetails = Omit<TVShow, 'genre_ids'> & {
   adult: false
   created_by: {
@@ -135,26 +150,20 @@ export type TVShowDetails = Omit<TVShow, 'genre_ids'> & {
     gender: number
     profile_path: string
   }[]
+  credits: { cast: CastMember[]; crew: CrewMember[] }
   episode_run_time: number[]
+  external_ids: {
+    facebook_id?: string | null
+    imdb_id?: string
+    instagram_id?: string | null
+    twitter_id?: string | null
+  }
   genres: { id: number; name: string }[]
   homepage: string
   in_production: boolean
   languages: string[]
   last_air_date: string
-  last_episode_to_air: {
-    id: number
-    name: string
-    overview: string
-    vote_average: number
-    vote_count: number
-    air_date: string
-    episode_number: number
-    production_code: string
-    runtime: number
-    season_number: number
-    show_id: number
-    still_path: string | null
-  }
+  last_episode_to_air: Episode
   next_episode_to_air: null
   networks: {
     id: number
@@ -171,6 +180,7 @@ export type TVShowDetails = Omit<TVShow, 'genre_ids'> & {
     origin_country: string
   }[]
   production_countries: { iso_3166_1: string; name: string }[]
+  recommendations: PaginatedResponse<TVShow>
   seasons: {
     air_date: string
     episode_count: number
@@ -185,4 +195,5 @@ export type TVShowDetails = Omit<TVShow, 'genre_ids'> & {
   status: string
   tagline: string
   type: string
+  videos: Videos
 }
