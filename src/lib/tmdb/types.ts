@@ -126,7 +126,7 @@ export type TVShow = {
   vote_count: number
 }
 
-export interface Episode {
+export type Episode = {
   id: number
   name: string
   overview: string
@@ -139,6 +139,17 @@ export interface Episode {
   season_number: number
   show_id: number
   still_path: string | null
+}
+
+export type Season = {
+  air_date: string
+  episode_count: number
+  id: number
+  name: string
+  overview: string
+  poster_path: string | null
+  season_number: number
+  vote_average: number
 }
 
 export type TVShowDetails = Omit<TVShow, 'genre_ids'> & {
@@ -181,16 +192,7 @@ export type TVShowDetails = Omit<TVShow, 'genre_ids'> & {
   }[]
   production_countries: { iso_3166_1: string; name: string }[]
   recommendations: PaginatedResponse<TVShow>
-  seasons: {
-    air_date: string
-    episode_count: number
-    id: number
-    name: string
-    overview: string
-    poster_path: string | null
-    season_number: number
-    vote_average: number
-  }[]
+  seasons: Season[]
   spoken_languages: { english_name: string; iso_639_1: string; name: string }[]
   status: string
   tagline: string
