@@ -28,7 +28,7 @@ export default function SeasonsGrid({ seasons }: SeasonsGridProps) {
             <div className='relative flex aspect-2/3 items-center justify-center'>
               {season.poster_path ? (
                 <Image
-                  src={`https://image.tmdb.org/t/p/w342/${season.poster_path}`}
+                  src={`https://image.tmdb.org/t/p/w342${season.poster_path}`}
                   alt={season.name}
                   width={342}
                   height={513}
