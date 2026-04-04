@@ -1,7 +1,7 @@
 'use client'
 
 import Icon from '@/components/ui/icon'
-import { Genre } from '@/lib/constants'
+import { SidebarGenre } from '@/lib/constants'
 import { cn } from '@/lib/utils'
 import { ArrowDownIcon, GridIcon } from '@hugeicons/core-free-icons'
 import Link from 'next/link'
@@ -9,7 +9,7 @@ import { useState } from 'react'
 
 type SidebarGenresProps = {
   title: string
-  genres: Genre[]
+  genres: SidebarGenre[]
   basePath: string
 }
 
@@ -84,7 +84,13 @@ export default function SidebarGenres({
   )
 }
 
-function GenreLink({ genre, basePath }: { genre: Genre; basePath: string }) {
+function GenreLink({
+  genre,
+  basePath,
+}: {
+  genre: SidebarGenre
+  basePath: string
+}) {
   return (
     <li>
       <Link

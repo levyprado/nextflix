@@ -21,7 +21,7 @@ export type SidebarSection = {
   items: SidebarItem[]
 }
 
-export type Genre = { id: number; name: string; slug: string }
+export type SidebarGenre = { id: number; name: string; slug: string }
 
 export const SIDEBAR_NAV: SidebarSection[] = [
   {
@@ -52,7 +52,7 @@ export const SIDEBAR_NAV: SidebarSection[] = [
   },
 ]
 
-export const MOVIE_GENRES: Genre[] = [
+export const MOVIE_GENRES: SidebarGenre[] = [
   { id: 28, name: 'Action', slug: 'action' },
   { id: 12, name: 'Adventure', slug: 'adventure' },
   { id: 16, name: 'Animation', slug: 'animation' },
@@ -74,7 +74,7 @@ export const MOVIE_GENRES: Genre[] = [
   { id: 37, name: 'Western', slug: 'western' },
 ]
 
-export const TV_GENRES: Genre[] = [
+export const TV_GENRES: SidebarGenre[] = [
   { id: 10759, name: 'Action & Adventure', slug: 'action-adventure' },
   { id: 16, name: 'Animation', slug: 'animation' },
   { id: 35, name: 'Comedy', slug: 'comedy' },
