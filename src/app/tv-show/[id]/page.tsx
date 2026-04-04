@@ -1,6 +1,7 @@
 import Container from '@/components/layout/container'
 import CastSection from '@/components/media/cast-section'
 import LastEpisodeCard from '@/components/media/detail/last-episode-card'
+import SeasonsGrid from '@/components/media/detail/seasons-grid'
 import RecommendationsSection from '@/components/media/recommendations-section'
 import TrailersSection from '@/components/media/trailers-section'
 import { Button, buttonVariants } from '@/components/ui/button'
@@ -166,6 +167,8 @@ export default async function TVShowDetailPage({
         <TrailersSection videos={tvShow.videos.results} />
 
         <LastEpisodeCard episode={tvShow.last_episode_to_air} />
+
+        <SeasonsGrid seasons={tvShow.seasons} />
 
         <RecommendationsSection
           recommendations={tvShow.recommendations.results}
