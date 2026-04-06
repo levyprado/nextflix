@@ -42,7 +42,7 @@ export const getTVShowDetails = (id: number) =>
 // Trending
 
 export const getTrendingAll = () =>
-  tmdbFetch<PaginatedResponse<Movie | TVShow>>('/trending/all/week')
+  tmdbFetch<PaginatedResponse<Movie | TVShow>>('/trending/all/day')
 
 export const getTrendingTVShows = () =>
   tmdbFetch<PaginatedResponse<TVShow>>('/trending/tv/week')
