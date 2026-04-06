@@ -40,7 +40,7 @@ export default function SeasonsGrid({ seasons }: SeasonsGridProps) {
             </div>
             <div className='flex flex-col gap-2 p-3 text-foreground/60'>
               <div className='flex items-center justify-between'>
-                <h3 className='font-heading font-bold text-foreground'>
+                <h3 className='font-heading leading-tight font-bold text-foreground'>
                   {season.name}
                 </h3>
                 {season.vote_average > 0 && (
