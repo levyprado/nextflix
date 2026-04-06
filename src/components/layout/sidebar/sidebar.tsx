@@ -15,6 +15,28 @@ type SidebarProps = {
   setIsOpen: Dispatch<SetStateAction<boolean>>
 }
 
+function SidebarContent() {
+  return (
+    <div className='no-scrollbar flex flex-1 flex-col gap-5 overflow-y-auto overscroll-contain pt-1 pb-4'>
+      {SIDEBAR_NAV.map((section) => (
+        <SidebarSection key={section.title} section={section} />
+      ))}
+
+      <SidebarGenres
+        title='Movie Genres'
+        genres={MOVIE_GENRES}
+        basePath={ROUTES.MOVIES}
+      />
+
+      <SidebarGenres
+        title='TV Genres'
+        genres={TV_GENRES}
+        basePath={ROUTES.TV_SHOWS}
+      />
+    </div>
+  )
+}
+
 export default function Sidebar({ isOpen, setIsOpen }: SidebarProps) {
   const [isDesktop, setIsDesktop] = useState(false)
 
@@ -24,26 +46,6 @@ export default function Sidebar({ isOpen, setIsOpen }: SidebarProps) {
     window.addEventListener('resize', checkIsDesktop)
     return () => window.removeEventListener('resize', checkIsDesktop)
   }, [])
-
-  const SidebarContent = (
-    <div className='flex flex-1 flex-col gap-5 overflow-y-auto overscroll-contain pt-1 pb-4 [scrollbar-width:none]'>
-      {SIDEBAR_NAV.map((section) => (
-        <SidebarSection key={section.title} section={section} />
-      ))}
-
-      <SidebarGenres
-        title='Movie Genres'
-        genres={MOVIE_GENRES}
-        basePath='/movies'
-      />
-
-      <SidebarGenres
-        title='TV Genres'
-        genres={TV_GENRES}
-        basePath='/tv-shows'
-      />
-    </div>
-  )
 
   return (
     <>
@@ -78,10 +80,9 @@ export default function Sidebar({ isOpen, setIsOpen }: SidebarProps) {
           </Button>
         </div>
 
-        {SidebarContent}
+        <SidebarContent />
       </aside>
 
-      {/* MOBILE DRAWER */}
       {!isDesktop && (
         <Drawer.Root direction='left' open={isOpen} onOpenChange={setIsOpen}>
           <Drawer.Portal>
@@ -110,7 +111,7 @@ export default function Sidebar({ isOpen, setIsOpen }: SidebarProps) {
                 genre filtering.
               </Drawer.Description>
 
-              {SidebarContent}
+              <SidebarContent />
             </Drawer.Content>
           </Drawer.Portal>
         </Drawer.Root>
