@@ -23,6 +23,7 @@ import {
 } from '@hugeicons/core-free-icons'
 import Image from 'next/image'
 import Link from 'next/link'
+import MetadataChip from './metadata-chip'
 
 type DetailHeroProps = {
   media: MovieDetails | TVShowDetails
@@ -78,31 +79,30 @@ export default function DetailHero({ media }: DetailHeroProps) {
             <div className='space-y-4 md:flex md:flex-wrap md:items-center md:gap-4 md:space-y-0'>
               {/* Metadata */}
               <div className='flex flex-wrap items-center gap-3 text-sm'>
-                <span className='flex items-center gap-1.5 rounded-full bg-yellow-400/20 px-2.5 py-0.5 text-yellow-400'>
-                  <Icon icon={StarIcon} size={16} className='fill-yellow-400' />
-                  {formatRating(media.vote_average)}
-                </span>
-                <span className='flex items-center gap-1.5 text-foreground/60'>
-                  <Icon icon={Calendar04Icon} size={16} />
-                  {getReleaseYear(releaseYear)}
-                </span>
+                <MetadataChip
+                  variant='highlight'
+                  icon={StarIcon}
+                  label={formatRating(media.vote_average)}
+                />
+                <MetadataChip
+                  icon={Calendar04Icon}
+                  label={getReleaseYear(releaseYear)}
+                />
                 {isMovie ? (
-                  <span className='flex items-center gap-1.5 text-foreground/60'>
-                    <Icon icon={ClockIcon} size={16} />
-                    {formatRuntime(media.runtime)}
-                  </span>
+                  <MetadataChip
+                    icon={ClockIcon}
+                    label={formatRuntime(media.runtime)}
+                  />
                 ) : (
                   <>
-                    <span className='flex items-center gap-1.5 text-foreground/60'>
-                      <Icon icon={TvIcon} size={16} />
-                      {media.number_of_seasons}{' '}
-                      {media.number_of_seasons === 1 ? 'Season' : 'Seasons'}
-                    </span>
-                    <span className='flex items-center gap-1.5 text-foreground/60'>
-                      <Icon icon={Film02Icon} size={16} />
-                      {media.number_of_episodes}{' '}
-                      {media.number_of_episodes === 1 ? 'Episode' : 'Episodes'}
-                    </span>
+                    <MetadataChip
+                      icon={TvIcon}
+                      label={`${media.number_of_seasons} ${media.number_of_seasons === 1 ? 'Season' : 'Seasons'}`}
+                    />
+                    <MetadataChip
+                      icon={Film02Icon}
+                      label={`${media.number_of_episodes} ${media.number_of_episodes === 1 ? 'Episode' : 'Episodes'}`}
+                    />
                   </>
                 )}
               </div>
