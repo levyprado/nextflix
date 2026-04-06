@@ -15,3 +15,6 @@ export const getReleaseYear = (date: string): string => {
 export const formatAirDate = (air_date: string): string => {
   return new Date(air_date).toLocaleDateString('en')
 }
+
+export const formatGenrePath = (genre: string) =>
+  genre.toLowerCase().replace(/\s+/g, '-')
