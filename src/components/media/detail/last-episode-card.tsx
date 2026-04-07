@@ -1,5 +1,5 @@
 import type { Episode } from '@/lib/tmdb/types'
-import { formatAirDate, formatRuntime } from '@/lib/tmdb/utils'
+import { formatAirDate, formatRuntime, getStillUrl } from '@/lib/tmdb/utils'
 import Image from 'next/image'
 
 type LastEpisodeCardProps = {
@@ -9,21 +9,25 @@ type LastEpisodeCardProps = {
 export default function LastEpisodeCard({ episode }: LastEpisodeCardProps) {
   if (!episode || !episode.still_path) return null
 
+  const stillUrl = getStillUrl(episode.still_path, 'w300')
+
   return (
     <section className='flex flex-col gap-4 md:gap-6 lg:gap-8'>
       <h2 className='font-heading text-xl font-bold md:text-2xl lg:text-3xl'>
         Last Episode
       </h2>
 
-      <div className='from flex flex-col gap-3 rounded-lg bg-linear-to-br from-foreground/10 to-foreground/5 p-4 md:flex-row md:gap-6 md:p-6'>
-        <div className='relative w-full shrink-0 overflow-hidden rounded-lg md:w-60'>
-          <Image
-            src={`https://image.tmdb.org/t/p/w342${episode.still_path}`}
-            alt={episode.name}
-            width={342}
-            height={192.375}
-            className='w-full'
-          />
+      <div className='from flex flex-col gap-3 rounded-lg bg-linear-to-br from-foreground/10 to-foreground/5 p-4 md:flex-row md:items-center md:gap-6 md:p-6'>
+        <div className='relative w-full shrink-0 overflow-hidden rounded-lg bg-foreground/10 md:w-60'>
+          {stillUrl && (
+            <Image
+              src={stillUrl}
+              alt={episode.name}
+              width={342}
+              height={192}
+              className='w-full'
+            />
+          )}
         </div>
 
         <div className='flex w-full flex-col gap-2'>

@@ -7,6 +7,8 @@ import {
   formatGenrePath,
   formatRating,
   formatRuntime,
+  getBackdropUrl,
+  getPosterUrl,
   getReleaseYear,
 } from '@/lib/tmdb/utils'
 import { cn } from '@/lib/utils'
@@ -32,8 +34,8 @@ type DetailHeroProps = {
 export default function DetailHero({ media }: DetailHeroProps) {
   const isMovie = 'title' in media
 
-  const backdropUrl = `https://image.tmdb.org/t/p/original${media.backdrop_path}`
-  const posterUrl = `https://image.tmdb.org/t/p/w500${media.poster_path}`
+  const backdropUrl = getBackdropUrl(media.backdrop_path, 'original')
+  const posterUrl = getPosterUrl(media.poster_path, 'w500')
 
   const title = isMovie ? media.title : media.name
   const releaseYear = isMovie ? media.release_date : media.first_air_date
@@ -44,14 +46,16 @@ export default function DetailHero({ media }: DetailHeroProps) {
     <>
       <div className='relative h-[50svh] w-full lg:h-[70vh]'>
         <div className='absolute inset-0 -z-10 bg-foreground/10'>
-          <Image
-            src={backdropUrl}
-            alt={`${title} backdrop`}
-            fill
-            priority
-            sizes='100vw'
-            className='object-cover object-center lg:object-[85%_15%]'
-          />
+          {backdropUrl && (
+            <Image
+              src={backdropUrl}
+              alt={`${title} backdrop`}
+              fill
+              priority
+              sizes='100vw'
+              className='object-cover object-center lg:object-[85%_15%]'
+            />
+          )}
           <div className='absolute inset-0 bg-linear-to-r from-background via-transparent to-transparent' />
           <div className='absolute inset-0 bg-linear-to-t from-background via-background/20 to-transparent' />
         </div>
@@ -59,25 +63,24 @@ export default function DetailHero({ media }: DetailHeroProps) {
 
       <Container className='relative mx-auto -mt-32 max-w-7xl lg:-mt-48'>
         <section className='flow-root space-y-4'>
-          {/* Poster Image */}
           <div className='relative float-left mr-4 mb-2 aspect-2/3 w-2/5 max-w-64 shrink-0 overflow-hidden rounded-2xl bg-foreground/10 md:mr-8 md:mb-4'>
-            <Image
-              src={posterUrl}
-              alt={title}
-              fill
-              sizes='(max-width: 768px) 40vw, 256px'
-              className='object-cover'
-            />
+            {posterUrl && (
+              <Image
+                src={posterUrl}
+                alt={title}
+                fill
+                sizes='(max-width: 768px) 40vw, 256px'
+                className='object-cover'
+              />
+            )}
           </div>
 
-          {/* Data */}
           <div className='mb-auto space-y-4'>
             <h1 className='font-heading text-3xl leading-none font-bold text-balance wrap-break-word md:text-4xl lg:text-6xl'>
               {title}
             </h1>
 
             <div className='space-y-4 md:flex md:flex-wrap md:items-center md:gap-4 md:space-y-0'>
-              {/* Metadata */}
               <div className='flex flex-wrap items-center gap-3 text-sm'>
                 <MetadataChip
                   variant='highlight'
@@ -107,7 +110,6 @@ export default function DetailHero({ media }: DetailHeroProps) {
                 )}
               </div>
 
-              {/* Genres */}
               <div className='flex flex-wrap gap-2 text-xs'>
                 {media.genres.map((genre) => (
                   <Link
@@ -121,14 +123,12 @@ export default function DetailHero({ media }: DetailHeroProps) {
               </div>
             </div>
 
-            {/* Tagline */}
             {media.tagline && (
               <p className='text-foreground/60 italic lg:text-lg'>
                 &ldquo;{media.tagline}&rdquo;
               </p>
             )}
 
-            {/* Overview */}
             <p className='max-w-5xl leading-relaxed text-pretty text-foreground/90 lg:text-lg'>
               {media.overview}
             </p>
@@ -142,8 +142,6 @@ export default function DetailHero({ media }: DetailHeroProps) {
                 <Icon icon={PlusSignIcon} />
                 Watchlist
               </Button>
-
-              {/* TODO: Rating button */}
 
               {media.homepage && (
                 <a
