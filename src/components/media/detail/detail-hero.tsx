@@ -115,7 +115,7 @@ export default function DetailHero({ media }: DetailHeroProps) {
                   <Link
                     key={genre.id}
                     href={genreBasePath(formatGenrePath(genre.name))}
-                    className='inline-block rounded-full border border-foreground/20 bg-foreground/15 px-2.5 py-0.5 text-foreground/90 backdrop-blur-md'
+                    className='inline-block rounded-full border border-foreground/20 bg-foreground/15 px-2.5 py-0.5 text-foreground/90 backdrop-blur-md transition-colors hover:border-foreground/25 hover:bg-foreground/20'
                   >
                     {genre.name}
                   </Link>
