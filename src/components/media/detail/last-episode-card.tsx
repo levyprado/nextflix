@@ -42,21 +42,27 @@ export default function LastEpisodeCard({ episode }: LastEpisodeCardProps) {
                 {formatAirDate(episode.air_date)}
               </p>
             </div>
-            <div className='flex flex-col items-center'>
-              <span className='text-lg leading-tight font-bold text-yellow-400'>
-                {episode.vote_average.toFixed(1)}
-              </span>
-              <span className='text-sm leading-tight text-foreground/60'>
-                Rating
-              </span>
-            </div>
+            {episode.vote_average > 0 && (
+              <div className='flex flex-col items-center'>
+                <span className='text-lg leading-tight font-bold text-yellow-400'>
+                  {episode.vote_average.toFixed(1)}
+                </span>
+                <span className='text-sm leading-tight text-foreground/60'>
+                  Rating
+                </span>
+              </div>
+            )}
           </div>
-          <p className='text-sm leading-relaxed text-pretty text-foreground/90'>
-            {episode.overview}
-          </p>
-          <p className='text-sm text-foreground/60'>
-            {formatRuntime(episode.runtime)}
-          </p>
+          {episode.overview && (
+            <p className='text-sm leading-relaxed text-pretty text-foreground/90'>
+              {episode.overview}
+            </p>
+          )}
+          {episode.runtime > 0 && (
+            <p className='text-sm text-foreground/60'>
+              {formatRuntime(episode.runtime)}
+            </p>
+          )}
         </div>
       </div>
     </section>
