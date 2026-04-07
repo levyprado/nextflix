@@ -7,6 +7,8 @@ type LastEpisodeCardProps = {
 }
 
 export default function LastEpisodeCard({ episode }: LastEpisodeCardProps) {
+  if (!episode || !episode.still_path) return null
+
   return (
     <section className='flex flex-col gap-4 md:gap-6 lg:gap-8'>
       <h2 className='font-heading text-xl font-bold md:text-2xl lg:text-3xl'>
