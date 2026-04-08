@@ -52,7 +52,7 @@ export default function DetailHero({ media }: DetailHeroProps) {
               src={backdropUrl}
               alt={`${title} backdrop`}
               fill
-              priority
+              preload={true}
               sizes='100vw'
               className='object-cover object-center lg:object-[85%_15%]'
             />

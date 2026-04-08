@@ -29,7 +29,7 @@ export default function HeroBanner({ media }: HeroBannerProps) {
             src={backdropUrl}
             alt={`${title} Backdrop`}
             fill
-            priority
+            preload={true}
             sizes='100vw'
             className='object-cover'
           />
