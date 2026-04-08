@@ -82,11 +82,13 @@ export default function DetailHero({ media }: DetailHeroProps) {
 
             <div className='space-y-4 md:flex md:flex-wrap md:items-center md:gap-4 md:space-y-0'>
               <div className='flex flex-wrap items-center gap-3 text-sm'>
-                <MetadataChip
-                  variant='highlight'
-                  icon={StarIcon}
-                  label={formatRating(media.vote_average)}
-                />
+                {media.vote_average > 0 && (
+                  <MetadataChip
+                    variant='highlight'
+                    icon={StarIcon}
+                    label={formatRating(media.vote_average)}
+                  />
+                )}
                 <MetadataChip
                   icon={Calendar04Icon}
                   label={getReleaseYear(releaseYear)}

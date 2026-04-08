@@ -34,16 +34,18 @@ export default function MediaCard({ media }: MediaCardProps) {
             className='size-full object-cover transition-[scale] duration-300 group-hover:scale-107'
           />
         )}
-        <div className='absolute top-2 right-2 flex items-center gap-1 rounded-full bg-background/60 px-2 py-0.5 backdrop-blur-md'>
-          <Icon
-            icon={StarIcon}
-            size={10}
-            className='fill-yellow-400 text-yellow-400'
-          />
-          <span className='text-[10px] font-semibold md:text-xs'>
-            {formatRating(media.vote_average)}
-          </span>
-        </div>
+        {media.vote_average > 0 && (
+          <div className='absolute top-2 right-2 flex items-center gap-1 rounded-full bg-background/60 px-2 py-0.5 backdrop-blur-md'>
+            <Icon
+              icon={StarIcon}
+              size={10}
+              className='fill-yellow-400 text-yellow-400'
+            />
+            <span className='text-[10px] font-semibold md:text-xs'>
+              {formatRating(media.vote_average)}
+            </span>
+          </div>
+        )}
         <div className='absolute inset-0 bg-linear-to-t from-background/80 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100' />
       </div>
       <p className='line-clamp-2 text-sm leading-tight font-semibold md:text-base'>
