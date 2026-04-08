@@ -25,6 +25,7 @@ import {
 } from '@hugeicons/core-free-icons'
 import Image from 'next/image'
 import Link from 'next/link'
+import LogoTitle from './logo-title'
 import MetadataChip from './metadata-chip'
 
 type DetailHeroProps = {
@@ -63,6 +64,8 @@ export default function DetailHero({ media }: DetailHeroProps) {
 
       <Container className='relative mx-auto -mt-32 max-w-7xl lg:-mt-48'>
         <section className='flow-root space-y-4'>
+          <LogoTitle logos={media.images.logos} altTitle={title} />
+
           <div className='relative float-left mr-4 mb-2 aspect-2/3 w-2/5 max-w-64 shrink-0 overflow-hidden rounded-2xl bg-foreground/10 md:mr-8 md:mb-4'>
             {posterUrl && (
               <Image
