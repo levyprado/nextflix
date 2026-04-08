@@ -26,7 +26,7 @@ export const getMoviesByGenre = (id: number) =>
 
 export const getMovieDetails = (id: number) =>
   tmdbFetch<MovieDetails>(
-    `/movie/${id}?append_to_response=credits,videos,recommendations`,
+    `/movie/${id}?append_to_response=credits,videos,recommendations,images`,
   )
 
 // TV Shows
@@ -36,7 +36,7 @@ export const getTVShowsByGenre = (id: number) =>
 
 export const getTVShowDetails = (id: number) =>
   tmdbFetch<TVShowDetails>(
-    `/tv/${id}?append_to_response=credits,videos,recommendations,external_ids`,
+    `/tv/${id}?append_to_response=credits,videos,recommendations,external_ids,images`,
   )
 
 // Trending

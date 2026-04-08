@@ -21,6 +21,9 @@ export const getProfileUrl = (
 export const getStillUrl = (path: string | null, size: StillSize = 'w300') =>
   path ? `${TMDB_IMAGE_BASE_URL}/${size}${path}` : null
 
+export const getLogoTitleUrl = (path: string) =>
+  `${TMDB_IMAGE_BASE_URL}/original${path}`
+
 export const formatRating = (rating: number) => {
   return rating.toFixed(1)
 }
