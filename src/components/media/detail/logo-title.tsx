@@ -8,24 +8,31 @@ type LogoTitleProps = {
 }
 
 export default function LogoTitle({ logos, altTitle }: LogoTitleProps) {
-  if (!logos?.length)
+  if (!logos?.length) {
     return (
       <h1 className='font-heading text-3xl leading-none font-bold text-balance wrap-break-word md:text-4xl lg:text-6xl'>
         {altTitle}
       </h1>
     )
+  }
 
-  const userLanguage = 'en'
-  const logoInLanguage = logos.find((logo) => logo.iso_639_1 === userLanguage)
-  const bestLogo = logoInLanguage || logos[0]
+  const bestLogo = logos.find((logo) => logo.iso_639_1 === 'en') ?? logos[0]
 
   return (
-    <Image
-      src={getLogoTitleUrl(bestLogo.file_path)}
-      alt={altTitle}
-      width={bestLogo.width}
-      height={bestLogo.height}
-      className='max-h-24 w-fit object-contain'
-    />
+    <div className='relative mb-4 w-full'>
+      <div
+        className='relative ml-[calc(min(40%,256px)+16px)] max-h-24 md:ml-[calc(min(40%,256px)+32px)] lg:max-h-32'
+        style={{ aspectRatio: `${bestLogo.width} / ${bestLogo.height}` }}
+      >
+        <Image
+          src={getLogoTitleUrl(bestLogo.file_path)}
+          alt={altTitle}
+          fill
+          preload={true}
+          className='object-contain object-left'
+        />
+      </div>
+      <h1 className='sr-only'>{altTitle}</h1>
+    </div>
   )
 }
