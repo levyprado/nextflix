@@ -8,7 +8,12 @@ type LogoTitleProps = {
 }
 
 export default function LogoTitle({ logos, altTitle }: LogoTitleProps) {
-  if (!logos?.length) return null
+  if (!logos?.length)
+    return (
+      <h1 className='font-heading text-3xl leading-none font-bold text-balance wrap-break-word md:text-4xl lg:text-6xl'>
+        {altTitle}
+      </h1>
+    )
 
   const userLanguage = 'en'
   const logoInLanguage = logos.find((logo) => logo.iso_639_1 === userLanguage)
@@ -20,7 +25,7 @@ export default function LogoTitle({ logos, altTitle }: LogoTitleProps) {
       alt={altTitle}
       width={bestLogo.width}
       height={bestLogo.height}
-      className='max-h-24 w-fit object-contain sm:min-w-3xs'
+      className='max-h-24 w-fit object-contain'
     />
   )
 }

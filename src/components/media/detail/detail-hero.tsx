@@ -64,8 +64,6 @@ export default function DetailHero({ media }: DetailHeroProps) {
 
       <Container className='relative mx-auto -mt-32 max-w-7xl lg:-mt-48'>
         <section className='flow-root space-y-4'>
-          <LogoTitle logos={media.images.logos} altTitle={title} />
-
           <div className='relative float-left mr-4 mb-2 aspect-2/3 w-2/5 max-w-64 shrink-0 overflow-hidden rounded-2xl bg-foreground/10 md:mr-8 md:mb-4'>
             {posterUrl && (
               <Image
@@ -79,9 +77,7 @@ export default function DetailHero({ media }: DetailHeroProps) {
           </div>
 
           <div className='mb-auto space-y-4'>
-            <h1 className='font-heading text-3xl leading-none font-bold text-balance wrap-break-word md:text-4xl lg:text-6xl'>
-              {title}
-            </h1>
+            <LogoTitle logos={media.images.logos} altTitle={title} />
 
             <div className='space-y-4 md:flex md:flex-wrap md:items-center md:gap-4 md:space-y-0'>
               <div className='flex flex-wrap items-center gap-3 text-sm'>
