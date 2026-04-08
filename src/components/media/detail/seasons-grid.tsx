@@ -25,7 +25,7 @@ export default function SeasonsGrid({ seasons }: SeasonsGridProps) {
           return (
             <li
               key={season.id}
-              className='group flex flex-col overflow-hidden rounded-lg border border-foreground/10 bg-linear-to-br from-foreground/10 to-foreground/5 transition-colors hover:border-foreground/30'
+              className='group flex flex-col overflow-hidden rounded-lg border border-foreground/10 bg-linear-to-br from-foreground/10 to-foreground/5'
             >
               <div className='relative flex aspect-2/3 items-center justify-center'>
                 {posterUrl ? (
