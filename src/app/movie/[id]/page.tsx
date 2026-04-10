@@ -18,7 +18,7 @@ export default async function MovieDetailPage({
   if (!movie) notFound()
 
   return (
-    <div className='min-h-screen pb-16'>
+    <div className='@container min-h-screen pb-16'>
       <BackButton />
 
       <DetailHero media={movie} />

@@ -20,7 +20,7 @@ export default async function TVShowDetailPage({
   if (!tvShow) notFound()
 
   return (
-    <div className='min-h-screen pb-16'>
+    <div className='@container min-h-screen pb-16'>
       <BackButton />
 
       <DetailHero media={tvShow} />
