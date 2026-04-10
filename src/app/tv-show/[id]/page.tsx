@@ -1,3 +1,4 @@
+import BackButton from '@/components/back-button'
 import Container from '@/components/layout/container'
 import CastSection from '@/components/media/cast-section'
 import DetailHero from '@/components/media/detail/detail-hero'
@@ -20,6 +21,8 @@ export default async function TVShowDetailPage({
 
   return (
     <div className='min-h-screen pb-16'>
+      <BackButton />
+
       <DetailHero media={tvShow} />
 
       <Container className='relative mx-auto mt-12 flex max-w-7xl flex-col gap-12 md:mt-20 md:gap-20'>
