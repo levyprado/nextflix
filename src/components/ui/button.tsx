@@ -10,7 +10,7 @@ const buttonVariants = cva(
         primary:
           'bg-foreground text-background border-foreground hover:bg-foreground/80',
         secondary:
-          'bg-foreground/15 border-foreground/20 backdrop-blur-md hover:bg-foreground/10',
+          'bg-foreground/15 border-foreground/20 backdrop-blur-md hover:bg-foreground/10 hover:border-foreground/25',
       },
       size: {
         default: 'h-11 gap-2 px-6 rounded-full has-[svg]:pl-5',
