@@ -218,3 +218,40 @@ export type TVShowDetails = Omit<TVShow, 'genre_ids'> & {
   videos: Videos
   images: Images
 }
+
+export type Person = {
+  adult: boolean
+  also_known_as: string[]
+  biography: string
+  birthday: string | null
+  deathday: string | null
+  gender: number
+  homepage: string | null
+  id: number
+  imdb_id: string | null
+  known_for_department: string
+  name: string
+  place_of_birth: string | null
+  popularity: number
+  profile_path: string | null
+}
+
+export type PersonCredits = {
+  cast: (Movie | TVShow) &
+    {
+      character: string
+      credit_id: string
+      order: number
+      media_type: string
+    }[]
+  crew: (Movie | TVShow) &
+    {
+      department: string
+      job: string
+      media_type: string
+    }[]
+}
+
+export type PersonDetails = Person & {
+  combined_credits: PersonCredits
+}
