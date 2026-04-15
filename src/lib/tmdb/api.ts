@@ -3,6 +3,7 @@ import type {
   Movie,
   MovieDetails,
   PaginatedResponse,
+  PersonDetails,
   TVShow,
   TVShowDetails,
 } from './types'
@@ -46,3 +47,8 @@ export const getTrendingAll = () =>
 
 export const getTrendingTVShows = () =>
   tmdbFetch<PaginatedResponse<TVShow>>('/trending/tv/week')
+
+// Person
+
+export const getPersonDetails = (id: number) =>
+  tmdbFetch<PersonDetails>(`/person/${id}?append_to_response=combined_credits`)
