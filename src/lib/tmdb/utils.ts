@@ -45,3 +45,28 @@ export const formatAirDate = (air_date: string) => {
 export const formatGenrePath = (genre: string) => {
   return genre.toLowerCase().replace(/\s+/g, '-')
 }
+
+export function formatBirthdayDeathday(
+  birthday: string,
+  deathday: string | null,
+) {
+  if (!birthday) return ''
+
+  const dateOptions: Intl.DateTimeFormatOptions = {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  }
+
+  const birthDate = new Date(birthday)
+  const formattedBirth = birthDate.toLocaleDateString('en-US', dateOptions)
+
+  if (deathday) {
+    const deathDate = new Date(deathday)
+    const formattedDeath = deathDate.toLocaleDateString('en-US', dateOptions)
+    return `${formattedBirth} - Died ${formattedDeath}`
+  }
+
+  const age = new Date().getFullYear() - birthDate.getFullYear()
+  return `${formattedBirth} (${age} years old)`
+}
