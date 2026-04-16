@@ -1,9 +1,15 @@
 import BackButton from '@/components/back-button'
 import Container from '@/components/layout/container'
+import MediaCard from '@/components/media/media-card'
+import ScrollSection from '@/components/media/scroll-section'
 import { Button, buttonVariants } from '@/components/ui/button'
 import Icon from '@/components/ui/icon'
 import { getPersonDetails } from '@/lib/tmdb/api'
-import { getProfileUrl } from '@/lib/tmdb/utils'
+import {
+  formatBirthdayDeathday,
+  getBackdropUrl,
+  getProfileUrl,
+} from '@/lib/tmdb/utils'
 import { cn } from '@/lib/utils'
 import {
   Calendar03Icon,
@@ -28,11 +34,34 @@ export default async function PersonPage({
 
   const profileUrl = getProfileUrl(person.profile_path)
 
+  const seen = new Set()
+  const knownFor = person.combined_credits.cast
+    .sort((a, b) => (b.vote_count || 0) - (a.vote_count || 0))
+    .filter((m) => (seen.has(m.id) ? false : (seen.add(m.id), true)))
+    .slice(0, 20)
+
+  const backdropUrl = getBackdropUrl(knownFor[0].backdrop_path)
+
   return (
     <div className='@container min-h-screen pb-16'>
       <BackButton />
 
-      <div className='relative h-[16.6svh] w-full lg:h-[23.3vh]'></div>
+      <div className='relative h-[16.6svh] w-full lg:h-[23.3vh]'>
+        <div className='absolute inset-0 -z-10 bg-foreground/10'>
+          {backdropUrl && (
+            <Image
+              src={backdropUrl}
+              alt=''
+              fill
+              preload={true}
+              sizes='100vw'
+              className='object-cover object-top'
+            />
+          )}
+          <div className='absolute inset-0 bg-linear-to-r from-background via-transparent to-transparent' />
+          <div className='absolute inset-0 bg-linear-to-t from-background via-background/20 to-transparent' />
+        </div>
+      </div>
 
       <Container className='relative mx-auto mt-12 flex max-w-7xl flex-col gap-12 md:mt-20 md:gap-20'>
         <section className='flow-root space-y-4'>
@@ -53,7 +82,7 @@ export default async function PersonPage({
               {person.name}
             </h1>
 
-            <div className='flex flex-wrap gap-2'>
+            <div className='flex flex-wrap gap-2 md:gap-3'>
               {person.known_for_department && (
                 <div className='flex items-center gap-1.5 text-sm leading-tight text-foreground/60'>
                   <Icon icon={FilmIcon} className='shrink-0' size={16} />
@@ -65,14 +94,7 @@ export default async function PersonPage({
                   <Icon icon={Calendar03Icon} className='shrink-0' size={16} />
                   <span>
                     Born{' '}
-                    {new Date(person.birthday).toLocaleDateString('en-US', {
-                      year: 'numeric',
-                      month: 'long',
-                      day: 'numeric',
-                    })}
-                    {person.deathday
-                      ? ` — Died ${new Date(person.deathday).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}`
-                      : ` (${new Date().getFullYear() - new Date(person.birthday).getFullYear()} years old)`}
+                    {formatBirthdayDeathday(person.birthday, person.deathday)}
                   </span>
                 </div>
               )}
@@ -118,11 +140,19 @@ export default async function PersonPage({
               )}
             </div>
 
-            <p className='max-w-5xl leading-relaxed text-pretty text-foreground/90 lg:text-lg'>
+            <p className='max-w-5xl leading-relaxed text-pretty wrap-break-word whitespace-pre-wrap text-foreground/90 lg:text-lg'>
               {person.biography}
             </p>
           </div>
         </section>
+
+        <ScrollSection title='Known For'>
+          {knownFor.map((media) => (
+            <li key={media.id}>
+              <MediaCard media={media} />
+            </li>
+          ))}
+        </ScrollSection>
       </Container>
     </div>
   )
