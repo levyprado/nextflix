@@ -237,19 +237,17 @@ export type Person = {
 }
 
 export type PersonCredits = {
-  cast: (Movie | TVShow) &
-    {
-      character: string
-      credit_id: string
-      order: number
-      media_type: string
-    }[]
-  crew: (Movie | TVShow) &
-    {
-      department: string
-      job: string
-      media_type: string
-    }[]
+  cast: ((Movie | TVShow) & {
+    character: string
+    credit_id: string
+    order: number
+    media_type: string
+  })[]
+  crew: ((Movie | TVShow) & {
+    department: string
+    job: string
+    media_type: string
+  })[]
 }
 
 export type PersonDetails = Person & {
